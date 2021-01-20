@@ -29,7 +29,7 @@ Grep elements inside nested iterables.
     
 ## NOTES
 
-Similar to [`deepmap`](https://docs.raku.org/routine/deepmap), this function will descend into any Iterables. It returns a flattened list of values that match the given predicated.
+Similar to [`deepmap`](https://docs.raku.org/routine/deepmap), this function will descend into any Iterables. It returns a flattened list of values that match the given predicate.
 
 You might think that like `deepmap`, the nesting structure should be maintained, but that functionality can already be achieved with `deepmap`
 

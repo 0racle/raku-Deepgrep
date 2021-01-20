@@ -67,7 +67,7 @@ This extends down to deeper nested structures as expected
 
 ## CAVEATS & LIMITATIONS
 
-It would be much nice if Raku had support for Semilist syntax on Iterables, which would allow this
+It would be nice if Raku had support for Semilist syntax on Iterables, which would allow this
 
 ```perl-6
     for @zs.&deepgrep(* ~~ /<:Lu>/, :k) -> @idx {
@@ -75,9 +75,9 @@ It would be much nice if Raku had support for Semilist syntax on Iterables, whic
     }
 ```
 
-Semilist support for Associatives was recently added for v6.e.PREVIEW, so hopefully Iterables will support this syntax when 6e is released.
-
 For now you will have to manually unpack your indices and index into the array, which means the shape must be uniform (ie. a M×N matrix).
+
+Semilist support for Associatives was recently added for v6.e.PREVIEW, so hopefully Iterables will support this syntax when 6e is released.
 
 ## LICENSE
 

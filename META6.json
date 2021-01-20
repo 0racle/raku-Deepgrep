@@ -1,7 +1,7 @@
 {
    "name" : "Deepgrep",
-   "version" : "0.0.1",
-   "description" : "Grep nested iterabless",
+   "version" : "0.0.2",
+   "description" : "Grep elements inside nested iterables",
    "authors" : [ "Joshua Yeshouroun" ],
    "provides" : {
       "Deepgrep" : "lib/Deepgrep.rakumod"

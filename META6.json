@@ -1,0 +1,12 @@
+{
+   "name" : "Deepgrep",
+   "version" : "0.0.1",
+   "description" : "Grep nested iterabless",
+   "authors" : [ "Joshua Yeshouroun" ],
+   "provides" : {
+      "Deepgrep" : "lib/Deepgrep.rakumod"
+   },
+   "depends" : [ ],
+   "source-url" : "git://github.com/0racle/raku-Deepgrep.git",
+   "license"    : "Artistic-2.0"
+}

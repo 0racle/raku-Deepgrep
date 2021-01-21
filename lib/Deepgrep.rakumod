@@ -1,28 +1,40 @@
 #!/usr/bin/env raku
 
-proto deepgrep($, $, *%_) is export { * }
+proto deepgrep(|) is export { * }
 
-multi deepgrep($xs, &f, :$p!) {
+multi deepgrep($xs, Regex $t, *%_) {
+    deepgrep($xs, * ~~ $t, |%_)
+}
+
+multi deepgrep($xs, Callable $t, :$p!) {
     $xs.kv.map: -> $i, $x {
         if $x ~~ Iterable {
-            |deepgrep($x, &f, :p).map: {
+            |&?ROUTINE($x, $t, :p).map: {
                 ($i, |.key) => .value
             }
         }
-        elsif f($x) {
+        elsif $t($x) {
             $i => $x
         }
     }
 }
 
-multi deepgrep($xs, &f) {
-    deepgrep($xs, &f, :p).map(*.value)
+multi deepgrep($xs, Callable $t) {
+    deepgrep($xs, $t, :p).map(*.value)
 }
 
-multi deepgrep($xs, &f, :$k!) {
-    deepgrep($xs, &f, :p).map(*.key)
+multi deepgrep($xs, Callable $t, :$k!) {
+    deepgrep($xs, $t, :p).map(*.key)
 }
 
-multi deepgrep($xs, &f, :$kv!) {
-    deepgrep($xs, &f, :p).map(|*.kv)
+multi deepgrep($xs, Callable $t, :$kv!) {
+    deepgrep($xs, $t, :p).map(|*.kv)
+}
+
+multi deepgrep($xs, Bool:D $t, *%_) {
+    X::Match::Bool.new(type => '&deepgrep').throw
+}
+
+multi deepgrep($xs, Mu $t, *%_) {
+    deepgrep($xs, * ~~ $t, |%_)
 }

@@ -1,6 +1,6 @@
 {
    "name" : "Deepgrep",
-   "version" : "0.0.3",
+   "version" : "0.1.0",
    "description" : "Grep elements inside nested iterables",
    "authors" : [ "Joshua Yeshouroun" ],
    "provides" : {

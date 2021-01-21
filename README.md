@@ -32,7 +32,7 @@ say deepgrep(@xs, *.ends-with('*'), :p).raku;
 NOTES
 =====
 
-Similar to [`deepmap`](https://docs.raku.org/routine/deepmap), this function will descend into any Iterables. It returns a flattened list of values that match the given predicate.
+Similar to [`deepmap`](https://docs.raku.org/routine/deepmap), this function will descend into Iterables. It returns a flattened list of values that match the given predicate.
 
 You might think that like `deepmap`, the nesting structure should be maintained, but that functionality can already be achieved with `deepmap`
 
@@ -41,7 +41,7 @@ say @xs.deepmap(-> $x { $x if $x.ends-with('*') }).raku;
 # [[], ["f*"], ["j*"], []]
 ```
 
-However `deepmap` cannot return keys (indices), or pairs, etc. Getting the indicies is also useful if you want to modify deeply nested mutable elements in-place
+However `deepmap` cannot return keys (indices), or pairs, etc. Getting the indicies is useful if you want to modify deeply nested mutable elements in-place
 
 ```perl6
 for deepgrep(@xs, *.ends-with('*'), :k) -> ($x, $y) {
@@ -63,7 +63,7 @@ my @zs = [
     ]
 ];
 
-for @zs.&deepgrep(* ~~ /<:Lu>/, :k) -> ($x, $y, $z) {
+for @zs.&deepgrep(/<:Lu>/, :k) -> ($x, $y, $z) {
     @zs[$x;$y;$z] .= lc
 }
 ```
@@ -79,7 +79,7 @@ for @zs.&deepgrep(* ~~ /<:Lu>/, :k) -> @idx {
 }
 ```
 
-For now you will have to manually unpack your indices and index into the array, which means the shape must be uniform (ie. a M×N matrix).
+For now you will have to manually unpack your indices and index into the array, which means the shape should be uniform (eg. a M×N matrix).
 
 Semilist support for Associatives was recently added for v6.e.PREVIEW, so hopefully Iterables will support this syntax when 6e is released.
 

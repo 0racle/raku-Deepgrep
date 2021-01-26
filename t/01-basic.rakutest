@@ -1,0 +1,32 @@
+use lib $?FILE.IO.parent(2).child('lib');
+use Deepgrep;
+use Test;
+
+my @xs = (
+    [< a  b  c  d >],
+    [< e  f* g  h >],
+    [< i  j* k  l >],
+    [< m  n  o  p >],
+);
+
+is-deeply deepgrep(@xs, *.ends-with('*')),
+    ("f*", "j*").Seq,
+    'basic'
+;
+
+is-deeply deepgrep(@xs, *.ends-with('*'), :k),
+    ((1, 1), (2, 1)).Seq,
+    'adverb :k'
+;
+
+is-deeply deepgrep(@xs, *.ends-with('*'), :kv),
+    ((1, 1), "f*", (2, 1), "j*").Seq,
+    'adverb :kv'
+;
+
+is-deeply deepgrep(@xs, *.ends-with('*'), :p),
+    ((1, 1) => "f*", (2, 1) => "j*").Seq,
+    'adverb :p'
+;
+
+done-testing;

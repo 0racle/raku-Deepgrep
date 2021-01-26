@@ -17,7 +17,7 @@ my @xs = (
 );
 
 say deepgrep(@xs, *.ends-with('*')).raku;
-# ("f*", "j*")
+# ("f*", "j*").Seq
 
 say deepgrep(@xs, *.ends-with('*'), :k).raku;
 # ((1, 1), (2, 1)).Seq
@@ -74,7 +74,7 @@ CAVEATS & LIMITATIONS
 It would be nice if Raku had support for Semilist syntax on Iterables, which would allow this
 
 ```perl6
-for @zs.&deepgrep(* ~~ /<:Lu>/, :k) -> @idx {
+for @zs.&deepgrep(/<:Lu>/, :k) -> @idx {
     @zs[||@idx] .= lc  # Unsupported syntax
 }
 ```

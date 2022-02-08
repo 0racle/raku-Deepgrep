@@ -6,7 +6,7 @@ Deepgrep - Grep elements inside nested iterables.
 SYNOPSIS
 ========
 
-```perl6
+```raku
 use Deepgrep;
 
 my @xs = (
@@ -36,14 +36,14 @@ Similar to [`deepmap`](https://docs.raku.org/routine/deepmap), this function wil
 
 You might think that like `deepmap`, the nesting structure should be maintained, but that functionality can already be achieved with `deepmap`
 
-```perl6
+```raku
 say @xs.deepmap(-> $x { $x if $x.ends-with('*') }).raku;
 # [[], ["f*"], ["j*"], []]
 ```
 
 However `deepmap` cannot return keys (indices), or pairs, etc. Getting the indicies is useful if you want to modify deeply nested mutable elements in-place
 
-```perl6
+```raku
 for deepgrep(@xs, *.ends-with('*'), :k) -> ($x, $y) {
     @xs[$x;$y] .= chop
 }
@@ -51,7 +51,7 @@ for deepgrep(@xs, *.ends-with('*'), :k) -> ($x, $y) {
 
 This extends down to deeper nested structures as expected
 
-```perl6
+```raku
 my @zs = [
     [
         ['a', 'b'], ['c', 'd'],
@@ -71,17 +71,17 @@ for @zs.&deepgrep(/<:Lu>/, :k) -> ($x, $y, $z) {
 CAVEATS & LIMITATIONS
 =====================
 
-It would be nice if Raku had support for Semilist syntax on Iterables, which would allow this
+If you are running under v6.e, Raku has support for Semilist syntax on Iterables, which allows this
 
-```perl6
+```raku
+use v6.e.PREVIEW;
+
 for @zs.&deepgrep(/<:Lu>/, :k) -> @idx {
-    @zs[||@idx] .= lc  # Unsupported syntax
+    @zs[||@idx] .= lc
 }
 ```
 
-For now you will have to manually unpack your indices and index into the array, which means the shape should be uniform (eg. a M×N matrix).
-
-Semilist support for Associatives was recently added for v6.e.PREVIEW, so hopefully Iterables will support this syntax when 6e is released.
+Without Semilist support, you will have to manually unpack your indices and index into the array, which means the shape should be uniform (eg. a M×N matrix).
 
 LICENSE
 =======

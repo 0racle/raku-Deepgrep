@@ -1,6 +1,6 @@
 #!/usr/bin/env raku
 
-unit module Deepgrep:ver<0.1.3>:auth<cpan:ELCARO>;
+unit module Deepgrep:ver<0.1.4>:auth<zef:elcaro>;
 
 proto deepgrep(|) is export { * }
 

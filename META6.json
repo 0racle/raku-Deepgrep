@@ -1,9 +1,10 @@
 {
    "name" : "Deepgrep",
-   "version" : "0.1.3",
+   "version" : "0.1.4",
    "description" : "Grep elements inside nested iterables",
-   "auth" : "cpan:ELCARO",
-   "authors" : [ "Joshua Yeshouroun" ],
+   "auth" : "zef:elcaro",
+   "authors" : [ "github:0racle" ],
+   "raku": "6c",
    "provides" : {
       "Deepgrep" : "lib/Deepgrep.rakumod"
    },
